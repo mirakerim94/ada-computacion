@@ -11,124 +11,106 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <!-- Empieza el body -->
-
 <body>
-  <!-- Section -->
-  <section>
-    <!--Primer div padre con 2 hijos -->
-    <div class="ventas-por-sucursal">
-      <div class="por-sucursal">
-      <h3>Ventas por sucursal</h3>
-    </div>
-      <!-- primer hijo -->
-      <div class="sucursal">
-        <p><span>Sucursal</span></p>
-        <p>Centro</p>
-        <p>Caballito</p>
-      </div>
-      <!-- segundo hijo -->
-      <div class="total">
-        <p><span>Total ventas</span></p>
-        <p>990</p>
-        <p>580</p>
-      </div>
-    </div>
-    <!-- Fin primer div -->
-    <!-- El segundo div padre con 2 hijos -->
-    <div class="reportes">
-      <div class="h3-reportes">
-      <h3>Reportes</h3>
-    </div>
-      <div class="productos">
-        <p>Productos estrella: <span>Monitor GPRS 3000</span></p>
-        <p>Vendedora que mas ingresos genero: <span>Grace</span></p>
-      </div>
-    </div>
-    <!-- Fin del segundo div -->
+ <section> <!--Section padre-->
+<div class="ventas-por-sucursal"> <!--1r div-->
+  <div class="cabezal">
+    <h2>Ventas por sucursal</h2>
+  </div>
+  <table id="tabla-venta-por-sucursal">
+    <tr>
+      <th class="sucursal">Sucursal</th>
+      <th class="total-ventas">Total ventas</th>
+    </tr>
+  </table>
+</div> <!--fin del 1r div-->
 
-    <!-- Inicio del tercer div -->
-    <div class="ventas">
-      <div class="cabezal">
-        <h3>Ventas</h3>
-        <button>
-          <i class="fas fa-plus-circle"></i>Nueva venta
-        </button>
-      </div>
-      <!-- el segundo div con la info -->
-      <div class="info">
-        <table>
-          <tr>
-            <td class="row">Fecha</td>
-            <td class="row">Vendedora</td>
-            <td class="row">Sucursal</td>
-            <td class="row">Componentes</td>
-            <td class="row">Precio</td>
-            <td class="row">Acciones</td>
-          </tr>
-          <tr>
-            <td>04/02/2019</td>
-            <td>Grace</td>
-            <td>Centro</td>
-            <td>Monitor GPRS 3000 - Motherboard ASUS 1500</td>
-            <td>320</td>
-            <td>
-              <i class="fas fa-pencil-alt"></i>
-              <i class="fas fa-trash-alt"></i>
-            </td>
-          </tr>
-          <tr>
-            <td>01/01/2019</td>
-            <td>Ada</td>
-            <td>Centro</td>
-            <td>Monitor GPRS 3000 - Motherboard ASUS 1500</td>
-            <td>320</td>
-            <td>
-              <i class="fas fa-pencil-alt"></i>
-              <i class="fas fa-trash-alt"></i>
-            </td>
-          </tr>
-          <tr>
-            <td>02/01/2019</td>
-            <td>Grace</td>
-            <td>Caballito</td>
-            <td>Monitor ASC 543 - Motherboard MZI</td>
-            <td>280</td>
-            <td>
-              <i class="fas fa-pencil-alt"></i>
-              <i class="fas fa-trash-alt"></i>
-            </td>
-          </tr>
-          <tr>
-            <td>10/01/2019</td>
-            <td>Ada</td>
-            <td>Centro</td>
-            <td>Monitor ASC 543 - Motherboard ASUS 1200</td>
-            <td>350</td>
-            <td>
-              <i class="fas fa-pencil-alt"></i>
-              <i class="fas fa-trash-alt"></i>
-            </td>
-          </tr>
-          <tr>
-            <td>12/01/2019</td>
-            <td>Grace</td>
-            <td>Caballito</td>
-            <td>Monitor GPRS 3000 - Motherboard ASUS 1200</td>
-            <td>300</td>
-            <td>
-              <i class="fas fa-pencil-alt"></i>
-              <i class="fas fa-trash-alt"></i>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <!-- Fin del tercer div -->
+<div class="reportes"> <!--2do div-->
+<div class="cabezal">
+  <h2>Reportes</h2>
+</div>
+<div class="fijo">
+  <p>Productos estrella:</p>
+  <p>Vendedora que más ingresos generó:</p>
+</div>
+</div> <!--fin del 2do div-->
 
-  </section>
-  <!-- Fin section -->
-  <!-- JS link -->
-  <script src="computacion.js"></script>
+<div class="ventas"><!--3r div-->
+<div class="cabezal">
+  <h2>Ventas</h2>
+  <button id="btn-ventas"><i class="fas fa-plus-circle"></i>Nueva venta</button>
+</div>
+<table id="tabla-ventas">
+  <tr class="tr-tabla-ventas">
+    <th class="fecha">Fecha</th>
+    <th class="vendedora">Vendedora</th>
+    <th class="tabla-sucursal">Sucursal</th>
+    <th class="componentes">Componentes</th>
+    <th class="precio">Precio</th>
+    <th class="acciones">Acciones</th>
+  </tr>
+</table>
+</div> <!--fin del 3r div-->
+ </section> <!-- Fin Section padre-->
+
+ <div class="oculto"> <!--div con modales ocultos-->
+<div class="agregar-venta"> <!--modal 1 agregar-->
+  <div class="cabezal-modal">
+    <h2>Agregar Venta</h2>
+  </div>
+  <form>
+    <label>Vendedora</label>
+    <select></select>
+    <label>Componentes</label>
+    <select></select>
+    <label>Sucursal</label>
+    <select></select>
+    <label>Fecha</label>
+    <input type="date">
+  </form>
+  <div class="foot">
+    <button id="btn-cancelar">Cancelar</button>
+    <input type="submit" value="Guardar">
+  </div>
+</div> <!--fin de modal 1-->
+
+<div class="editar-venta"> <!--modal 2 editar-->
+  <div class="cabezal-modal">
+    <h2>Editar Venta</h2>
+  </div>
+  <form>
+    <label>Vendedora</label>
+    <select></select>
+    <label>Componentes</label>
+    <select></select>
+    <label>Sucursal</label>
+    <select></select>
+    <label>Fecha</label>
+    <input type="date">
+  </form>
+  <div class="foot">
+    <button id="btn-cancelar">Cancelar</button>
+    <input type="submit" value="Guardar">
+  </div>
+</div> <!--fin de modal 2-->
+
+<div class="modal-eliminar">
+  <div class="cabezal-modal">
+    <h2>Eliminar Venta</h2>
+  </div>
+  <div class="mensaje">
+    <h3>¿Estás segura?</h3>
+    <p>Esta acción no se puede revertir.</p>
+  </div>
+  <div class="foot">
+    <button id="btn-cancelar">Cancelar</button>
+    <button id="btn-eliminar">Eliminar</button>
+  </div>
+</div>
+ </div> <!--Fin del div con modales ocultos-->
+
+
+ <script src="computacion.js"></script>
 </body>
 <!-- Fin body -->
 

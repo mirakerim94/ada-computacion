@@ -13,97 +13,82 @@ html {
 body {
   background-color: beige;
 }
-/*inicio section*/
-section {
-  width: 80%;
+/*ocultando los modales*/
+/*.oculto{
+  display:none;
+}
+/*Section*/
+section{
+  width: 90%;
   display: flex;
+  margin: 13rem auto;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: 10rem auto;
-  gap:0.8em; 
+  justify-content: space-between;
 }
-/*fin section*/
-/* inicio 1r div */
-.ventas-por-sucursal {
+/*1r div*/
+.ventas-por-sucursal{
   width: 49%;
-  display: flex;
-  justify-content: center;
+  display:flex;
   flex-wrap: wrap;
-}
-.por-sucursal{
-    width: 100%;
-    padding:0.2em;
-    background-color:rgb(228, 142, 142);
-    color:seashell;
-}
-/* fin 1r div */
-/* divs hijos del 1r div */
-.sucursal {
-  width: 50%;
-}
-.total {
-  width: 50%;
-}
-/*  */
-/* inicio el 2do div */
-.reportes {
-  width: 49%;
-}
-.h3-reportes{
-  width: 100%;
-  background-color: rgb(228, 142, 142);
-  padding:0.2em;
-  color:seashell;
-}
-/* el hijo del 2do div */
-.productos {
-  margin-top:0.5em;
-  padding: 0.5em;
-}
-span{
-  font-weight: bolder;
-}
-/* fin el 2do div */
-/* inicio 3r div */
-.ventas{
-    width: 100%;
-    display:flex;
-    flex-wrap: wrap;
-    align-items: center;
 }
 .cabezal{
-    width: 100%;
-    display:flex;
-    justify-content:space-between;
-    padding:0.8em;
-    background-color: rgb(228, 142, 142);
-    color:seashell;
+  width: 100%;
+  background-color: rgb(78, 170, 139);
+  padding: 0.5em;
+  display:flex;
+  justify-content: space-between;
 }
-button{
-    background-color: green;
-    color:white;
+.sucursal{
+  padding-right: 3em;
+}
+/*fin 1r div*/
+
+/*2do div*/
+.reportes{
+  width: 49%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.fijo{
+  width: 100%;
+}
+/*fin 2do div*/
+
+/*3r div*/
+.ventas{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+th,
+td {
+  width: 300px;
+  overflow: hidden;
+}
+#btn-ventas{
+  background-color: darkblue;
+  padding: 0.3em;
+  color: whitesmoke;
+  margin:0.6em;
 }
 .fa-plus-circle{
-    color:white;
+  margin-right: 0.5em;
 }
-.info{
-    width: 100%;
+/*fin 3r div*/
+
+/*Estilos modales*/
+.agregar-venta{
+  width: 50%;
+  display:flex;
+  flex-wrap: wrap;
+  outline: 2px solid black;
 }
-.row{
-  font-weight: bolder;
-  color:darkslateblue;
+.cabezal-modal{
+  width: 100%;
 }
-td{
-    padding: 0.2em 2em;
+.foot{
+  width: 100%;
 }
-.fas{
-    margin:.4em;
-}
-.fa-trash-alt{
-    color:rgb(255, 24, 24);
-    font-size: 14px;
-}
-.fa-pencil-alt{
-     color: darkgreen;
-     font-size: 14px;
+form{
+display:block;
 }
