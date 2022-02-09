@@ -11,106 +11,126 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <!-- Empieza el body -->
+
 <body>
- <section> <!--Section padre-->
-<div class="ventas-por-sucursal"> <!--1r div-->
-  <div class="cabezal">
-    <h2>Ventas por sucursal</h2>
-  </div>
-  <table id="tabla-venta-por-sucursal">
-    <tr>
-      <th class="sucursal">Sucursal</th>
-      <th class="total-ventas">Total ventas</th>
-    </tr>
-  </table>
-</div> <!--fin del 1r div-->
+  <section>
+    <!--Section padre-->
+    <div class="ventas-por-sucursal">
+      <!--1r div-->
+      <div class="cabezal">
+        <h2>Ventas por sucursal</h2>
+      </div>
+      <table id="tabla-venta-por-sucursal">
+        <tr>
+          <th class="sucursal">Sucursal</th>
+          <th class="total-ventas">Total ventas</th>
+        </tr>
+      </table>
+    </div>
+    <!--fin del 1r div-->
 
-<div class="reportes"> <!--2do div-->
-<div class="cabezal">
-  <h2>Reportes</h2>
-</div>
-<div class="fijo">
-  <p>Productos estrella:</p>
-  <p>Vendedora que más ingresos generó:</p>
-</div>
-</div> <!--fin del 2do div-->
+    <div class="reportes">
+      <!--2do div-->
+      <div class="cabezal">
+        <h2>Reportes</h2>
+      </div>
+      <div class="fijo">
+        <p>Productos estrella:</p>
+        <p>Vendedora que más ingresos generó:</p>
+      </div>
+    </div>
+    <!--fin del 2do div-->
 
-<div class="ventas"><!--3r div-->
-<div class="cabezal">
-  <h2>Ventas</h2>
-  <button id="btn-ventas"><i class="fas fa-plus-circle"></i>Nueva venta</button>
-</div>
-<table id="tabla-ventas">
-  <tr class="tr-tabla-ventas">
-    <th class="fecha">Fecha</th>
-    <th class="vendedora">Vendedora</th>
-    <th class="tabla-sucursal">Sucursal</th>
-    <th class="componentes">Componentes</th>
-    <th class="precio">Precio</th>
-    <th class="acciones">Acciones</th>
-  </tr>
-</table>
-</div> <!--fin del 3r div-->
- </section> <!-- Fin Section padre-->
+    <div class="ventas">
+      <!--3r div-->
+      <div class="cabezal">
+        <h2>Ventas</h2>
+        <button id="btn-ventas"><i class="fas fa-plus-circle"></i>Nueva venta</button>
+      </div>
+      <table id="tabla-ventas">
+        <tr class="tr-tabla-ventas">
+          <th class="fecha">Fecha</th>
+          <th class="vendedora">Vendedora</th>
+          <th class="tabla-sucursal">Sucursal</th>
+          <th class="componentes">Componentes</th>
+          <th class="precio">Precio</th>
+          <th class="acciones">Acciones</th>
+        </tr>
+      </table>
+    </div>
+    <!--fin del 3r div-->
+  </section> <!-- Fin Section padre-->
 
- <div class="oculto"> <!--div con modales ocultos-->
-<div class="agregar-venta"> <!--modal 1 agregar-->
-  <div class="cabezal-modal">
-    <h2>Agregar Venta</h2>
+  <!--modal agregar venta-->
+  <div class="agregar-venta oculto">
+    <div class="cabezal-modal">
+      <h2>Agregar Venta</h2>
+    </div>
+    <form>
+      <label>Vendedora</label>
+      <select id="vendedora"></select>
+      <label>Componentes</label>
+      <select id="componentes"></select>
+      <label>Sucursal</label>
+      <select id="sucursal"></select>
+      <label>Fecha</label>
+      <input type="date">
+    </form>
+    <div class="foot">
+      <button class="btn-cancelar">Cancelar</button>
+      <input type="submit" value="Guardar" class="input-guardar">
+    </div>
   </div>
-  <form>
-    <label>Vendedora</label>
-    <select></select>
-    <label>Componentes</label>
-    <select></select>
-    <label>Sucursal</label>
-    <select></select>
-    <label>Fecha</label>
-    <input type="date">
-  </form>
-  <div class="foot">
-    <button id="btn-cancelar">Cancelar</button>
-    <input type="submit" value="Guardar">
-  </div>
-</div> <!--fin de modal 1-->
-
-<div class="editar-venta"> <!--modal 2 editar-->
-  <div class="cabezal-modal">
-    <h2>Editar Venta</h2>
-  </div>
-  <form>
-    <label>Vendedora</label>
-    <select></select>
-    <label>Componentes</label>
-    <select></select>
-    <label>Sucursal</label>
-    <select></select>
-    <label>Fecha</label>
-    <input type="date">
-  </form>
-  <div class="foot">
-    <button id="btn-cancelar">Cancelar</button>
-    <input type="submit" value="Guardar">
-  </div>
-</div> <!--fin de modal 2-->
-
-<div class="modal-eliminar">
-  <div class="cabezal-modal">
-    <h2>Eliminar Venta</h2>
-  </div>
-  <div class="mensaje">
-    <h3>¿Estás segura?</h3>
-    <p>Esta acción no se puede revertir.</p>
-  </div>
-  <div class="foot">
-    <button id="btn-cancelar">Cancelar</button>
-    <button id="btn-eliminar">Eliminar</button>
-  </div>
-</div>
- </div> <!--Fin del div con modales ocultos-->
+  <!--fin de modal 1-->
 
 
- <script src="computacion.js"></script>
+<!--modal 2 editar-->
+  <div class="editar-venta oculto">
+    
+    <div class="cabezal-modal">
+      <h2>Editar Venta</h2>
+    </div>
+    <form>
+      <label>Vendedora</label>
+      <select></select>
+      <label>Componentes</label>
+      <select></select>
+      <label>Sucursal</label>
+      <select></select>
+      <label>Fecha</label>
+      <input type="date">
+    </form>
+    <div class="foot">
+      <button class="btn-cancelar">Cancelar</button>
+      <input type="submit" value="Guardar" id="submit-editar">
+    </div>
+  </div>
+  <!--fin de modal 2-->
+
+
+<!-- el ultimo modal -->
+  <div class="modal-eliminar oculto">
+    <div class="cabezal-modal">
+      <h2>Eliminar Venta</h2>
+    </div>
+    <div class="mensaje">
+      <h3>¿Estás segura?</h3>
+      <p>Esta acción no se puede revertir.</p>
+    </div>
+    <div class="foot">
+      <button class="btn-cancelar">Cancelar</button>
+      <button id="btn-eliminar">Eliminar</button>
+    </div>
+  </div>
+  <!--Fin modal eliminar-->
+
+  <!-- el div oculto -->
+<div id="overlay" class="active oculto"></div>
+<!-- fin div oculto -->
+
+<!-- JS -->
+  <script src="arrays.js"></script>
+  <script src="computacion.js"></script>
 </body>
 <!-- Fin body -->
 
