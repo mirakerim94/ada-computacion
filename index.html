@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel ="https://fontawesome.com/v5/search">
 </head>
 <!-- Empieza el body -->
 
@@ -47,7 +48,7 @@
         <h2>Ventas</h2>
         <button id="btn-ventas"><i class="fas fa-plus-circle"></i>Nueva venta</button>
       </div>
-      <table id="tabla-ventas">
+      <table id="table-ventas">
         <tr class="tr-tabla-ventas">
           <th class="fecha">Fecha</th>
           <th class="vendedora">Vendedora</th>
@@ -101,7 +102,7 @@
       <input type="date">
     </form>
     <div class="foot">
-      <button class="btn-cancelar">Cancelar</button>
+      <button class="btn-cancelar-editar">Cancelar</button>
       <input type="submit" value="Guardar" id="submit-editar">
     </div>
   </div>
@@ -118,7 +119,7 @@
       <p>Esta acción no se puede revertir.</p>
     </div>
     <div class="foot">
-      <button class="btn-cancelar">Cancelar</button>
+      <button class="btn-cancelar-modal">Cancelar</button>
       <button id="btn-eliminar">Eliminar</button>
     </div>
   </div>
@@ -129,7 +130,6 @@
 <!-- fin div oculto -->
 
 <!-- JS -->
-  <script src="arrays.js"></script>
   <script src="computacion.js"></script>
 </body>
 <!-- Fin body -->

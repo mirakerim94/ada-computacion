@@ -204,3 +204,7 @@ form input {
   backdrop-filter: blur(2.5px);
   -webkit-backdrop-filter: blur(2.5px);
 }
+/* td de js */
+#table-ventas tr td{
+  text-align: center;
+}
