@@ -62,6 +62,7 @@ th,
 td {
   width: 300px;
   overflow: hidden;
+  border-bottom: 1px solid lightgray;
 }
 #btn-ventas {
   background-color: darkblue;
@@ -207,4 +208,20 @@ form input {
 /* td de js */
 #table-ventas tr td{
   text-align: center;
+}
+/*iconos*/
+.fa-pencil{
+  color: green;
+  padding: 0.5em;
+  font-size: larger;
+}
+.fa-trash{
+  color:red;
+  padding:0.5em;
+  font-size: larger;
+}
+#pencil, #trash{
+  border: none;
+  background-color:beige;
+  cursor: pointer;
 }
