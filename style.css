@@ -264,6 +264,7 @@ form input {
     }
 
     .agregar-venta, .editar-venta, .modal-eliminar{
+      left: 10%;
       width: 80%;
     }
   }
