@@ -12,16 +12,20 @@ html {
 /*dando el estilo al body*/
 body {
   background-color: beige;
-  position: relative;
+  /* position: relative; */
+  outline: 5px solid blue;
+
 }
+
 
 /*Section*/
 section {
   width: 90%;
   display: flex;
-  margin: 13rem auto;
+  margin: 3rem auto;
   flex-wrap: wrap;
   justify-content: space-between;
+
 }
 /*1r div*/
 .ventas-por-sucursal {
@@ -36,8 +40,8 @@ section {
   display: flex;
   justify-content: space-between;
 }
-.sucursal {
-  padding-right: 3em;
+#tabla-venta-por-sucursal{
+  text-align: center;
 }
 /*fin 1r div*/
 
@@ -49,6 +53,12 @@ section {
 }
 .fijo {
   width: 100%;
+}
+#producto-estrella{
+  font-weight: bolder;
+}
+#span-mas-ingresos{
+  font-weight: bolder;
 }
 /*fin 2do div*/
 
@@ -82,7 +92,7 @@ td {
 /*Estilos modales*/
 .agregar-venta {
   position: absolute;
-  top: 33%;
+  top: 15%;
   left: 35%;
   width: 30%;
   display: flex;
@@ -101,7 +111,7 @@ td {
 /* editar venta */
 .editar-venta {
   position: absolute;
-  top: 33%;
+  top: 15%;
   left: 35%;
   width: 30%;
   display: flex;
@@ -110,6 +120,7 @@ td {
   background-color: beige;
   z-index: 20;
   border-radius: 1em;
+  overflow: hidden;
 }
 /* div con botones */
 .foot {
@@ -162,7 +173,7 @@ form input {
 /* modal eliminar */
 .modal-eliminar{
   position: absolute;
-  top: 33%;
+  top: 15%;
   left: 35%;
   width: 30%;
   display: flex;
@@ -224,4 +235,22 @@ form input {
   border: none;
   background-color:beige;
   cursor: pointer;
+}
+
+@media(max-width: 900px) {
+  section{
+    flex-direction: column;
+    align-items: center;
+  } 
+  .ventas-por-sucursal{
+    width: 100%;
+    margin:0;
+    padding: 0;
+  }
+  .reportes{
+    width: 100%;
+    margin:0;
+    padding: 0;
+  }
+
 }

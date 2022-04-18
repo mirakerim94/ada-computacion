@@ -9,23 +9,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel ="https://fontawesome.com/v5/search">
+  <link rel="https://fontawesome.com/v5/search">
 </head>
 <!-- Empieza el body -->
 
 <body>
-  <section>
+  <section class="section-principal">
     <!--Section padre-->
     <div class="ventas-por-sucursal">
       <!--1r div-->
       <div class="cabezal">
         <h2>Ventas por sucursal</h2>
       </div>
-      <table id="tabla-venta-por-sucursal">
+      <table id="tabla-de-sucursales">
         <tr>
           <th class="sucursal">Sucursal</th>
           <th class="total-ventas">Total ventas</th>
         </tr>
+        <tbody id="tabla-venta-por-sucursal">
+
+        </tbody>
       </table>
     </div>
     <!--fin del 1r div-->
@@ -36,8 +39,8 @@
         <h2>Reportes</h2>
       </div>
       <div class="fijo">
-        <p>Productos estrella:</p>
-        <p>Vendedora que más ingresos generó:</p>
+        <p>Productos estrella: <span id="producto-estrella"></span></p>
+        <p>Vendedora que más ingresos generó: <span id="span-mas-ingresos"></span></p>
       </div>
     </div>
     <!--fin del 2do div-->
@@ -67,50 +70,53 @@
     <div class="cabezal-modal">
       <h2>Agregar Venta</h2>
     </div>
-    <form>
+    <form id="formulario-de-nueva-venta">
       <label>Vendedora</label>
-      <select id="vendedora"></select>
+      <select id="vendedora-agregar-venta">
+      </select>
       <label>Componentes</label>
-      <select id="componentes"></select>
+      <select id="componentes-agregar-venta" multiple></select>
       <label>Sucursal</label>
-      <select id="sucursal"></select>
+      <select id="sucursal-agregar-venta"></select>
       <label>Fecha</label>
-      <input type="date">
+      <input type="date" id="fecha-agregar-venta">
     </form>
     <div class="foot">
       <button class="btn-cancelar">Cancelar</button>
-      <input type="submit" value="Guardar" class="input-guardar">
+      <input type="submit" value="Guardar" class="input-guardar" id="guardar-venta">
     </div>
   </div>
   <!--fin de modal 1-->
 
 
-<!--modal 2 editar-->
-  <div class="editar-venta oculto">
-    
+  <!--modal 2 editar-->
+  <div class="editar-venta oculto" id="editar-venta">
+
     <div class="cabezal-modal">
       <h2>Editar Venta</h2>
     </div>
     <form>
       <label>Vendedora</label>
-      <select></select>
+      <select id="vendedora-editar-venta">
+        <option value=""></option>
+      </select>
       <label>Componentes</label>
-      <select></select>
+      <select id="componentes-editar-venta" multiple></select>
       <label>Sucursal</label>
-      <select></select>
+      <select id="sucursal-editar-venta"></select>
       <label>Fecha</label>
-      <input type="date">
+      <input type="date" id="fecha-editar-venta">
     </form>
     <div class="foot">
-      <button class="btn-cancelar-editar">Cancelar</button>
+      <button class="btn-cancelar btn-cancelar-editar">Cancelar</button>
       <input type="submit" value="Guardar" id="submit-editar">
     </div>
   </div>
   <!--fin de modal 2-->
 
 
-<!-- el ultimo modal -->
-  <div class="modal-eliminar oculto">
+  <!-- el ultimo modal -->
+  <div class="modal-eliminar oculto" id="modal-eliminar">
     <div class="cabezal-modal">
       <h2>Eliminar Venta</h2>
     </div>
@@ -119,18 +125,18 @@
       <p>Esta acción no se puede revertir.</p>
     </div>
     <div class="foot">
-      <button class="btn-cancelar-modal">Cancelar</button>
+      <button class="btn-cancelar btn-cancelar-modal">Cancelar</button>
       <button id="btn-eliminar">Eliminar</button>
     </div>
   </div>
   <!--Fin modal eliminar-->
 
   <!-- el div oculto -->
-<div id="overlay" class="active oculto"></div>
-<!-- fin div oculto -->
+  <div id="overlay" class="active oculto"></div>
+  <!-- fin div oculto -->
 
-<!-- JS -->
-  <script src ="data.js"></script>
+  <!-- JS -->
+  <script src="data.js"></script>
   <script src="computacion.js"></script>
 </body>
 <!-- Fin body -->
