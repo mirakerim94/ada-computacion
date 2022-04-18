@@ -13,8 +13,6 @@ html {
 body {
   background-color: beige;
   /* position: relative; */
-  outline: 5px solid blue;
-
 }
 
 
@@ -253,4 +251,16 @@ form input {
     padding: 0;
   }
 
+  @media(max-width: 470px){
+    section{
+      width: 90vw;
+    }
+
+    #table-ventas{
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 12px;
+      font-weight: bolder;
+    }
+  }
 }
