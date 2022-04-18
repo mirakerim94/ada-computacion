@@ -262,5 +262,9 @@ form input {
       font-size: 12px;
       font-weight: bolder;
     }
+
+    .agregar-venta, .editar-venta, .modal-eliminar{
+      width: 80%;
+    }
   }
 }
