@@ -89,7 +89,7 @@ td {
 
 /*Estilos modales*/
 .agregar-venta {
-  position: absolute;
+  position: fixed;
   top: 15%;
   left: 35%;
   width: 30%;
@@ -108,7 +108,7 @@ td {
 }
 /* editar venta */
 .editar-venta {
-  position: absolute;
+  position: fixed;
   top: 15%;
   left: 35%;
   width: 30%;
@@ -170,7 +170,7 @@ form input {
 }
 /* modal eliminar */
 .modal-eliminar{
-  position: absolute;
+  position: fixed;
   top: 15%;
   left: 35%;
   width: 30%;

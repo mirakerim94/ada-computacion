@@ -6,7 +6,7 @@ let botonPencil = document.querySelector("#pencil");
 let botonTrash = document.querySelector("#trash");
 let editarVenta = document.querySelector("#editar-venta")
 
-/* funciones para modales */
+
 botonNuevaVenta.addEventListener("click", () => {
   agregar.classList.remove("oculto")
   overlay.classList.remove("oculto")
@@ -16,14 +16,8 @@ botonCancelar.addEventListener("click", () => {
   overlay.classList.add("oculto")
 })
 
-//botones de editar y eliminar ventas
-/*crearFilas.addEventListener("click", () => {
-    agregar.classList.remove("oculto")
-    overlay.classList.remove("oculto")
-})*/
 
 
-//traer los datos de array precargado
 
 let tablaVentas = document.getElementById("table-ventas")
 let crearTablaDeVentas = () => {
@@ -35,9 +29,10 @@ let crearTablaDeVentas = () => {
         <td>${local.ventas[i].sucursal}</td>
         <td>${local.ventas[i].componentes}</td>
         <td>${precioMaquina(local.ventas[i].componentes)}</td>
-        <td><button id="pencil"><i class="fas fa-pencil id-para-editar-${i}"></i></button>
-        <button id="trash"><i class="fas fa-trash id-para-borrarlo-${i}"></i></button></td>
-        `
+        <td><button id="pencil"><i class="fas fa-pencil id-para-editar-${i}"></i></button> 
+        <button id="trash" onclick='eliminarVenta(${i})'
+        ><i class="fas fa-trash id-para-borrarlo-${i}"></i></button></td>`
+
     tablaVentas.appendChild(crearFilas)
   }
 }
@@ -53,27 +48,23 @@ crearTablaDeVentas()
 
 function precioMaquina(componentes) {
   let acc = 0
-  componentes.map(componente => {
-    //me devuelva componentes que pido
+  for (const componente of componentes) {
     //console.log(componente)
     local.precios.filter(precio => {
       if (componente === precio.componente)
         return acc += precio.precio
       //console.log(acc)
     })
-
-  })
+  }
   return acc
-
 }
 //console.log(precioMaquina(["Monitor GPRS 3000", "HDD Toyiva", "RAM Quinston", "Motherboard ASUS 1200"]))
 
 //2)cantidadVentasComponente(componente): recibe un componente y devuelve la cantidad de veces que fue vendido, o sea que formó parte de una máquina que se vendió. La lista de ventas no se pasa por parámetro, se asume que está identificada por la variable ventas
 const cantidadVentasComponente = (componente) => {
   let acc = 0
-  //me devuelve el array de objetos de ventas
-  local.ventas.map(venta => {
-    //filtro el array de componentes
+  let {ventas} = local
+  for (const venta of ventas){
     venta.componentes.filter(producto => {
       //console.log(producto)
       if (componente === producto) {
@@ -82,62 +73,53 @@ const cantidadVentasComponente = (componente) => {
       }
 
     })
-  })
+  }
   return acc
 }
 
 //console.log(cantidadVentasComponente("Motherboard MZI"))
 
+//funcion auxiliar para vendedora del mes
+const ventasPorMesyPorVendedora = (vendedora, mes, anio) => {
+  acc = 0
+  let { ventas } = local
+  for (let { nombreVendedora, componentes, fecha } of ventas) {
+    if (vendedora === nombreVendedora && fecha.getMonth() + 1 === mes && fecha.getFullYear() === anio) {
+      return acc += precioMaquina(componentes)
+    }
+  }
+  return acc
+}
+
+ventasPorMesyPorVendedora("Grace", 1, 2019);
+
 //3)vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre de la vendedora que más vendió en plata en el mes. O sea no cantidad de ventas, sino importe total de las ventas. El importe de una venta es el que indica la función precioMaquina. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
 
 
 const vendedoraDelMes = (mes, anio) => {
-  let ventasPorFecha = local.ventas.filter(venta => {
-    //console.log(venta.fecha.getMonth()+1)
-    //console.log(venta.fecha.getFullYear())
-    if (mes === (venta.fecha.getMonth() + 1) && anio === venta.fecha.getFullYear()) {
-      return venta
+  let { vendedoras } = local
+
+  let ventasPorMesPorVendedora = vendedoras.map(vendedora => {
+    return {
+      vendedora: vendedora,
+      ventasPorMes: ventasPorMesyPorVendedora(vendedora, mes, anio)
     }
   })
 
-  let Grace = 0
-  let Ada = 0
-  let Sheryl = 0
-  let Hedy = 0
-
-  ventasPorFecha.map(venta => {
-    switch (true) {
-      case venta.nombreVendedora === "Ada":
-        Ada += precioMaquina(venta.componentes)
-        break
-      case venta.nombreVendedora === "Grace":
-        Grace += precioMaquina(venta.componentes)
-        break
-      case venta.nombreVendedora === "Sheryl":
-        Sheryl += precioMaquina(venta.componentes)
-        break
-      case venta.nombreVendedora === "Hedy":
-        Hedy += precioMaquina(venta.componentes)
-        break
+  let acc = 0
+  let vendedoraDelMes = ''
+  for (let { vendedora, ventasPorMes } of ventasPorMesPorVendedora) {
+    if (acc < ventasPorMes) {
+      acc = ventasPorMes
+      vendedoraDelMes = vendedora
     }
-  })
-
-  let mejorVendedora = ""
-
-
-  if (Ada > Grace && Ada > Sheryl && Ada > Hedy) {
-    mejorVendedora = "Ada"
-  } else if (Hedy > Grace && Hedy > Sheryl && Hedy > Ada) {
-    mejorVendedora = "Hedy"
-  } else if (Sheryl > Grace && Sheryl > Hedy && Sheryl > Ada) {
-    mejorVendedora = "Sheryl"
-  } else {
-    mejorVendedora = "Grace"
   }
 
-  return mejorVendedora
+  return vendedoraDelMes
 }
-//console.log(vendedoraDelMes(1, 2019))
+
+vendedoraDelMes(2, 2019)
+
 
 //4)ventasMes(mes, anio): Obtener las ventas de un mes. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
 const ventasMes = (mes, anio) => {
@@ -153,18 +135,43 @@ const ventasMes = (mes, anio) => {
   return acc
 }
 
-//console.log(ventasMes(2, 2019))
+//console.log(ventasMes(1, 2019))
+
+//renderPorMes(): Muestra una lista ordenada del importe total vendido por cada mes/año
+
+const renderPorMes = (anio) => {
+  let fechas = [];
+  let {ventas} = local;
+  for (const venta of ventas) {
+    let fecha = venta.fecha.getMonth()
+    !fechas.includes(fecha) && fechas.push(fecha)
+  }
+ fechas.sort((a,b) => {
+   return a - b
+ })
+ const ventasPorMes = fechas.map(elemento => {
+   return {
+     fecha: elemento,
+     total: ventasMes(elemento+1, anio)
+   }
+ })
+ return ventasPorMes
+}
+//console.log(renderPorMes(2019))
+
+
 
 //5)ventasVendedora(nombre): Obtener las ventas totales realizadas por una vendedora sin límite de fecha.
 const ventasVendedora = (nombre) => {
   let acc = 0
-  local.ventas.map(venta => {
+  let {ventas} = local
+  for (const venta of ventas) {
     //console.log(venta)
     if (venta.nombreVendedora === nombre) {
       //console.log(venta.componentes)
       return acc += precioMaquina(venta.componentes)
     }
-  })
+  }
   return acc
 }
 //console.log(ventasVendedora("Sheryl"))
@@ -313,8 +320,6 @@ const mejorVendedora = () => {
 
   //console.log(laQueMasVendio)
 
-
-
   let acc = 0
   let mejorDeMejor = ""
   laQueMasVendio.map(vendedora => {
@@ -327,9 +332,6 @@ const mejorVendedora = () => {
 
 
   document.querySelector("#span-mas-ingresos").innerHTML = mejorDeMejor
-
-
-
 
   return mejorDeMejor
 }
@@ -388,19 +390,21 @@ agregarSucursalesALaNuevaVenta()
 
 //funcion para guargar la nueva venta    
 
+
+
 document.querySelector("#guardar-venta").addEventListener("click", () => {
   agregar.classList.add("oculto")
   overlay.classList.add("oculto")
 
+  var componentes_options = document.getElementById('componentes-agregar-venta').selectedOptions;
+  var componentes_values = Array.from(componentes_options).map(({ value }) => value);
+
   let nuevaVenta = {
     fecha: new Date(document.querySelector("#fecha-agregar-venta").value),
     nombreVendedora: document.querySelector("#vendedora-agregar-venta").value,
-    componentes: [document.querySelector("#componentes-agregar-venta").value],
+    componentes: componentes_values,
     sucursal: document.querySelector("#sucursal-agregar-venta").value
   }
-
-  //console.log(nuevaVenta)
-  //console.table(local.ventas)
 
   local.ventas.push(nuevaVenta)
   //console.table(local.ventas)
@@ -412,44 +416,23 @@ document.querySelector("#guardar-venta").addEventListener("click", () => {
 
 //funcion para eliminar ventas
 
-tablaVentas.addEventListener("click", (e) => {
-  e.preventDefault()
-
-  let item = e.target
-
-  if (item.classList[1] === 'fa-trash') {
-    document.querySelector("#modal-eliminar").classList.remove("oculto")
-    overlay.classList.remove("oculto")
-    
-    let itemIndex = parseInt(item.classList[2].slice(17))
-    console.log(item.classList[2].slice(17))
-
-    document.querySelector("#btn-eliminar").addEventListener('click', () => {
-
-      item.parentElement.parentElement.parentElement.remove()
-      document.querySelector("#modal-eliminar").classList.add("oculto")
-      overlay.classList.add("oculto")
-
-
-      eliminarDatos(itemIndex)
-
-      console.table(local.ventas)
-      tablaVentas.innerHTML = ''
-      crearTablaDeVentas()
-      render()
-
-    })
-  }
-
-})
-
-const eliminarDatos = (itemIndex) =>{
-
-
-  let { ventas } = local
-
-  ventas.splice(itemIndex, 1)
+const eliminarVenta = (index) => {
+  document.querySelector("#modal-eliminar").classList.remove("oculto")
+  overlay.classList.remove("oculto")
+  indexParaBorrar = index
 }
+
+document.querySelector("#btn-eliminar").addEventListener('click', (e) => {
+  e.preventDefault()
+  document.querySelector("#modal-eliminar").classList.add("oculto")
+  overlay.classList.add("oculto")
+
+  local.ventas.splice(indexParaBorrar, 1)
+  console.log(local.ventas)
+  tablaVentas.innerHTML = ''
+  crearTablaDeVentas()
+  render()
+})
 
 document.querySelector(".btn-cancelar-modal").addEventListener('click', () => {
   document.querySelector("#modal-eliminar").classList.add("oculto")
@@ -503,25 +486,28 @@ tablaVentas.addEventListener("click", (e) => {
 
     llenarInputsEditar(itemIndex)
 
-    document.querySelector("#submit-editar").addEventListener('click', () => {
-
-      console.log(itemIndex)
-
-
-      local.ventas[itemIndex].fecha = new Date(document.querySelector("#fecha-editar-venta").value),
-        local.ventas[itemIndex].nombreVendedora = document.querySelector("#vendedora-editar-venta").value,
-        local.ventas[itemIndex].componentes = [document.querySelector("#componentes-editar-venta").value],
-        local.ventas[itemIndex].sucursal = document.querySelector("#sucursal-editar-venta").value
-
-      tablaVentas.innerHTML = ''
-      crearTablaDeVentas()
-      render()
-      document.querySelector(".editar-venta").classList.add("oculto")
-      overlay.classList.add("oculto")
-    })
-
+    indexParaEditar = itemIndex
   }
 
+})
+
+document.querySelector("#submit-editar").addEventListener('click', () => {
+
+  var componentes_options = document.getElementById('componentes-editar-venta').selectedOptions;
+  var componentes_values = Array.from(componentes_options).map(({ value }) => value);
+
+  local.ventas[indexParaEditar].fecha = aniadirHoras(3, new Date(document.querySelector("#fecha-editar-venta").value)),
+    local.ventas[indexParaEditar].nombreVendedora = document.querySelector("#vendedora-editar-venta").value,
+    local.ventas[indexParaEditar].componentes = componentes_values,
+    local.ventas[indexParaEditar].sucursal = document.querySelector("#sucursal-editar-venta").value
+
+  console.log()
+
+  tablaVentas.innerHTML = ''
+  crearTablaDeVentas()
+  render()
+  document.querySelector(".editar-venta").classList.add("oculto")
+  overlay.classList.add("oculto")
 })
 
 const llenarInputsEditar = (index) => {
@@ -541,7 +527,12 @@ document.querySelector(".btn-cancelar-editar").addEventListener('click', () => {
   overlay.classList.add("oculto")
 })
 
+function aniadirHoras(horas, date = new Date()) {
+  const copiaFecha = new Date(date.getTime());
+
+  copiaFecha.setTime(copiaFecha.getTime() + horas * 60 * 60 * 1000);
+
+  return copiaFecha;
+}
 
 
-
-// 
